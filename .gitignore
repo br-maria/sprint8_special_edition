@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# MacOS system files
+.DS_Store
+
+# Pycharm / IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Kubernetes artifacts that shouldn't be committed
+*.tmp
+*.swp
+
+# Minikube/Kubectl cache
+.kube/
+.minikube/
+
+# Locust temporary files
+*.csv
+
+# Images — allowed (DO NOT IGNORE .png)
+# Task artifacts (PNG screenshots) should NOT be ignored
+# So do not add '*.png' here
+
+# Keep YAML configs (deployment.yaml, hpa.yaml, service.yaml)

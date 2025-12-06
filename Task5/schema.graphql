@@ -1,0 +1,68 @@
+"""Корневой тип запросов."""
+type Query {
+  """
+  Получить информацию о клиенте по ID.
+
+  REST-аналог:
+  GET /v1/clients/{id}
+  Дополнительно можно сразу запросить документы и родственников
+  через вложенные поля client.documents и client.relatives.
+  """
+  client(id: ID!): Client
+
+  """
+  Получить список документов клиента по ID.
+
+  REST-аналог:
+  GET /v1/clients/{id}/documents
+  """
+  clientDocuments(clientId: ID!): [Document!]!
+
+  """
+  Получить список родственников клиента по ID.
+
+  REST-аналог:
+  GET /v1/clients/{id}/relatives
+  """
+  clientRelatives(clientId: ID!): [Relative!]!
+}
+
+"""Клиент."""
+type Client {
+  id: ID!
+  name: String
+  age: Int
+
+  """
+  Документы клиента.
+
+  Эквивалент REST /v1/clients/{id}/documents,
+  но доступен как вложенное поле.
+  """
+  documents: [Document!]!
+
+  """
+  Родственники клиента.
+
+  Эквивалент REST /v1/clients/{id}/relatives,
+  но доступен как вложенное поле.
+  """
+  relatives: [Relative!]!
+}
+
+"""Документ клиента."""
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+"""Родственник клиента."""
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
