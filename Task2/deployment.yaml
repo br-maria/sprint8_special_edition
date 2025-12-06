@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insuretech-test-app
+  labels:
+    app: insuretech-test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: insuretech-test-app
+  template:
+    metadata:
+      labels:
+        app: insuretech-test-app
+    spec:
+      containers:
+        - name: insuretech-test-app
+          image: scaletestapp:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "20Mi"
+            limits:
+              cpu: "500m"
+              memory: "30Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
